@@ -8,28 +8,8 @@
     <link rel="icon" type="image/x-icon" href="./419907652_7553298004681535_6968897049834617524_n.jpg">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-    
-    <!-- <script type="module" src="test1.js"></script> -->
 </head>
 <body>
-    <!-- <button onclick="readDB()">TESTE</button> -->
-    <!-- <div id="modal">
-        <div id="modalContent">
-            <button id="fecharModal" onclick="fecharModal()">&times;</button>
-            <h1>Adicionar Produto</h1>
-            <input type="text" name="name" id="name">
-            <input type="number" name="price" id="price">
-            <button onclick="add()">Adicionar</button>
-            <h1>Lista de Produtos</h1>
-            <table id="modalTable">
-                <tr>
-                    <th>Produto</th>
-                    <th>Preço</th>
-                    <th>Opções</th>
-                </tr>
-            </table>
-        </div>
-    </div> -->
     <div class="col1">
         <div id="botoes"></div>
     </div>
@@ -40,12 +20,6 @@
         <button id="btnTroco" onclick="resultado()">Troco</button>        
         <p id="pTroco"></p>
     </div>
-
-    <!-- <div id="modalEditar">
-        <button id="fecharModal" onclick="fecharModalEditar()">&times;</button>
-        <input type="number" id="novoPreco">
-        <button onclick="confirmar()">Confirmar</button>
-    </div> -->
 
     <div class="col2">
         <div class="cimo">
@@ -64,194 +38,7 @@
         </div>
         
     </div>
-    <script src="test2.js"></script>
-    <!-- <script src="index.js" type="module"></script> -->
-    <!-- <script>
-        let dia = 0
-        let sum = 0
-        let count = 0
-        // let num = 0
-        let registo = []
-        let total = document.querySelector("#total")
-
-        let itens = [{name: "Café", value:0.70},{name: "Descafeinado", value: 0.80}, {name: "Pingo", value: 0.90},
-        {name: "1/2 de Leite", value:1.20},{name: "Chá", value: 0.80}, {name: "Chá de Limão", value: 0.80},
-        {name: "Água s/gás 0.5L", value:0.70}, {name: "Água s/gás 1.5L", value:1.50}, {name: "Água c/gás", value:1.00},
-        {name:"Bebida de Lata", value:1.00}, {name: "Cerveja mini", value:1.00},{name:"Leite c/chocolate", value:1.00},
-        {name:"Whisky 1/2", value:2.50}, {name:"Whisky 1", value:4.00},{name:"Porto",value:3.00},{name:"Chicletes", value:0.10},
-        {name:"Chupas Chupas", value: 0.40},{name: "Tosta Mista", value:1.50}, {name: "Croissant", value: 1.50}, {name: "Pasteis Variados", value: 1.00},
-        {name: "Torrada", value: 1.20}, {name:"Miniaturas", value:0.50},{name: "Pasteis de Carne", value: 1.50},{name: "Batatas Fritas", value: 1.00}]
-        
-        // localStorage.setItem("itens", JSON.stringify(itens))
-        if(localStorage.getItem("itens") != null){
-            itens = localStorage.getItem("itens")
-        }else{
-            itens = localStorage.setItem("itens", JSON.stringify(itens))
-        }
-        // let itens = localStorage.getItem("itens" || [{name: "Café", value:0.70},{name: "Descafeinado", value: 0.80}, {name: "Pingo", value: 0.90},
-        // {name: "1/2 de Leite", value:1.20},{name: "Chá", value: 0.80}, {name: "Chá de Limão", value: 0.80},
-        // {name: "Água s/gás 0.5L", value:0.70}, {name: "Água s/gás 1.5L", value:1.50}, {name: "Água c/gás", value:1.00},
-        // {name:"Bebida de Lata", value:1.00}, {name: "Cerveja mini", value:1.00},{name:"Leite c/chocolate", value:1.00},
-        // {name:"Whisky 1/2", value:2.50}, {name:"Whisky 1", value:4.00},{name:"Porto",value:3.00},{name:"Chicletes", value:0.10},
-        // {name:"Chupas Chupas", value: 0.40},{name: "Tosta Mista", value:1.50}, {name: "Croissant", value: 1.50}, {name: "Pasteis Variados", value: 1.00},
-        // {name: "Torrada", value: 1.20}, {name:"Miniaturas", value:0.50},{name: "Pasteis de Carne", value: 1.50},{name: "Batatas Fritas", value: 1.00}])
-
-        let botoes = document.querySelector("#botoes")
-
-        let itensLen = itens.length
-        itens = JSON.parse(itens)
-        for(let i = 0; i < itensLen; i++){
-            console.log(itens[i]);
-            
-            botoes.innerHTML += `<button class="itens" onclick="test(${i})"> ${itens[i].name} </button>`
-        }
-
-        function test(a) {
-            // console.log(a);
-            let item = itens[a]
-
-            sum += item.value
-
-            registo.push({ id: count, name: item.name, value: item.value })
-            
-            document.querySelector("#registo").innerHTML += `<p id="item${registo[count].id}">${registo[count].name} \n ${registo[count].value}€ <button onclick="limparItem(${registo[count].id})">-</button></p>`
-            
-            total.innerHTML = `Total:\n ${sum.toFixed(2)}€`
-            count++
-        }
-
-        function limparItem(id) {
-            // console.log(id);
-
-            let itemParaRemover = document.querySelector(`#item${id}`);
-            if (itemParaRemover) {
-                itemParaRemover.remove();
-            }
-
-            let item = registo.find(item => item.id === id)
-            // console.log(item);
-            
-            if (item) {
-                sum -= item.value
-                // console.log("Retirado: " + item.value);                
-                registo = registo.filter(item => item.id !== id)
-            }
-
-            count--
-
-            total.innerHTML = `Total:\n ${sum.toFixed(2)}€`
-            // console.log(registo);
-        }
-      
-        function limpar(){
-            sum = 0
-            // console.log("Estou aqui"); 
-            registo = []
-            count = 0
-            document.querySelector("#registo").innerHTML = ""
-            total.innerHTML = `Total:\n 0.00€`
-            // console.log(registo);
-            
-        }
-
-        function troco(){
-            let valor = prompt("Valor recebido:")
-            let troco = valor - sum
-            if(troco < 0){
-                troco = -troco
-                alert(`Faltam ${troco}€ para o valor a pagar`)
-            }else {
-                alert(`Tem de dar ${troco.toFixed(2)}€`)
-                dia += sum
-                sum = 0
-                registo = []
-                count = 0
-                document.querySelector("#registo").innerHTML = ""
-                total.innerHTML = `Total:\n 0.00€`
-            }
-            
-
-        }
-        
-        function fecho(){
-            if(sum > 0){
-                dia += sum
-            }
-            alert("O dia rendeu "+dia+"€")
-            dia = 0
-        }
-
-        for(let i=0; i<itens.length; i++){
-            document.querySelector("#modalTable").innerHTML += `<tr><td>${itens[i].name}</td>
-                                                            <td>${itens[i].value}</td>
-                                                            <td><button onclick="remover(${itens[i].name})">Remover</button></td>
-                                                            <td><button onclick="editar(${itens[i].name})">Editar</button></td></tr>`
-        }
-
-        function remover(name){
-            let index = itens.findIndex(item => item.name === name)
-
-            for(let i=0; i<itens.length; i++){
-                if(itens[i].name == name){
-                    let index = itens.findIndex(item => item.name === name)
-                    itens.splice(index,1)
-                }
-            }
-            // if(index !== -1){
-            //     itens.splice(index, 1)
-            // }
-            // itens = itens.filter(item => item.name !== name)
-            atualizarTabela()
-            // for(let i=0; i<itens.length; i++){
-            //     if(itens[i].name == name){
-            //         itens[i].remove()
-            //     }
-            // }
-            // alert("Apagar")
-        }
-
-        function editar(){
-            
-            alert("editar")
-        }
-
-        function add(){ 
-            let itensLS = localStorage.getItem("itens")
-            itensLS = JSON.parse(itensLS)
-            console.log(itensLS);
-            
-
-            let name = document.querySelector("#name").value
-            let price = document.querySelector("#price").value
-
-            let newItem = {name: name, value: +price}
-            console.log(newItem);
-            
-            itens.push(newItem)
-
-            botoes.innerHTML += `<button class="itens" onclick="test(${itens.length-1})"> ${newItem.name} </button>`
-            document.querySelector("#modalTable").innerHTML += `<tr><td>${newItem.name}</td>
-                                                            <td>${newItem.value}</td>
-                                                            <td><button onclick="remover()"">Remover</button></td>
-                                                            <td><button onclick="editar()">Editar</button></td></tr>`
-                                                      
-            itensLS.push(newItem)
-            itensLS = JSON.stringify(itensLS)
-            console.log(itensLS);
-            
-            localStorage.setItem("itens",itensLS)
-        }
-
-        function atualizarTabela(){
-            document.querySelector("#modalTable").innerHTML = ""
-            for(let i = 0; i<itens.length; i++){
-                document.querySelector("#modalTable").innerHTML += `<tr><td>${itens[i].name}</td>
-                                                            <td>${itens[i].value}</td>
-                                                            <td><button onclick="remover()"">Remover</button></td>
-                                                            <td><button onclick="editar()">Editar</button></td></tr>`
-            }
-        }
-        
-    </script> -->
+    <script src="registo.js"></script>
+    
 </body>
 </html>
