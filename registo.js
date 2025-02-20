@@ -15,6 +15,7 @@ async function getData(){
     let { data, error } = await supabase
         .from('AuditorioSMI')
         .select('*')
+        .order('id', { ascending: true });
 
     itens = data
     console.log(itens);
