@@ -1,0 +1,95 @@
+body {
+    background-color: white;
+    background-image: url("https://scontent.fopo6-2.fna.fbcdn.net/v/t39.30808-6/419907652_7553298004681535_6968897049834617524_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=zJx-5oFhjEwQ7kNvgH-fzBO&_nc_oc=AdjXftumYNmKVA999wwvT9fqs2fqWC7RycOd-eo4YH4p3Ik0O_jq_JFCaVBgKMxj-Tt3IYtili3zEYfsObIKCMAx&_nc_zt=23&_nc_ht=scontent.fopo6-2.fna&_nc_gid=AoHHZRurvrXvynM3SsMiwMr&oh=00_AYB84Itc5IuIIxe9zjkJdowECVNUMwM1SUXaA6AG7XF-JQ&oe=67B03ED1");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 40%;
+    display: flex;
+    /* justify-content: space-evenly; */
+    padding: 0.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    /* overflow: hidden; */
+}
+
+input{
+    height: 1.5rem;
+    border: solid 1px #000;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    font-size: 15px;
+}
+
+button{
+    font-size: 15px;
+    background-color: rgb(194, 194, 194);
+    color: black;
+    margin-left: 0.5rem;
+    border: none;
+    border-radius: 2px;
+    height: 3rem;
+    width: 6rem;
+}
+
+#remover{
+    background-color: red;
+}
+
+#btnInput{
+    height: 1.7rem;
+    margin-top: 2rem;
+
+}
+
+#fecharModal{
+    height: 1.7rem;
+    width: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+th{
+    text-align: left;
+    font-weight: bold;
+}
+
+
+h1{
+    font-size: 18px;
+    margin-top: 2rem;
+}
+
+/* th,tr{
+    border: solid 0.5px #000;
+} */
+
+#modalEditar{
+    display: none;
+    justify-content: center;
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    align-items: center;
+    z-index: 1;
+    /* left: 50%;
+    right:50%;
+    top: 2rem; */
+    width: 40%;
+    height: 15%;
+    overflow-y: hidden;
+    background-color: white;
+    border: 5px solid #000;
+}
+
+#novoPreco{
+    margin-left: 0.5rem;
+}
+
+span{
+    margin-left: 0.5rem;
+}
+
+a{
+    font-weight: bold;
+    text-decoration: dashed;
+    color: #000;
+}

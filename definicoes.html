@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="definicoes.css">
+</head>
+<body>
+    <div id="definicoes">
+        <a href="registo.html">< Voltar</a>
+        <h1>Adicionar Produto</h1>
+        <span><b>Produto:   </b></span><input type="text" name="name" id="name">
+        <span><b>Preço:   </b></span><input type="number" name="price" id="price">
+        <button onclick="add()" id="btnInput">Adicionar</button>
+        
+        <table id="definicoesTable">
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Opções</th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="modalEditar">
+        <button id="fecharModal" onclick="fecharModalEditar()">&times;</button><br>
+        <span><b>Novo preço:</b></span><input type="number" id="novoPreco">
+        <button onclick="confirmar()" id="btnInput">Confirmar</button>
+    </div>
+
+
+    <script src="test3.js"></script>
+</body>
+</html>
