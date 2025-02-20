@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="definicoes.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 </head>
 <body>
     <div id="definicoes">
@@ -12,21 +14,31 @@
         <h1>Adicionar Produto</h1>
         <span><b>Produto:   </b></span><input type="text" name="name" id="name">
         <span><b>Preço:   </b></span><input type="number" name="price" id="price">
-        <button onclick="add()" id="btnInput">Adicionar</button>
+        <button onclick="adicionarProduto()" id="btnInput">Adicionar</button>
+        <hr>
+        <h1>Lista de Produtos</h1>
+        <div id="conteudo">
+            <div>
+                <table id="definicoesTable">
+                    <tr>
+                        <th>Produto</th>
+                        <th>Preço</th>
+                        <th>Opções</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="col2">
+                <h1>Último fecho:</h1>
+                <p id="fecho">Ainda não foram registados fechos</p>
+            </div>
+        </div>
         
-        <table id="definicoesTable">
-            <tr>
-                <th>Produto</th>
-                <th>Preço</th>
-                <th>Opções</th>
-            </tr>
-        </table>
     </div>
 
     <div id="modalEditar">
         <button id="fecharModal" onclick="fecharModalEditar()">&times;</button><br>
         <span><b>Novo preço:</b></span><input type="number" id="novoPreco">
-        <button onclick="confirmar()" id="btnInput">Confirmar</button>
+        <button onclick="mudarPreco()" id="btnInput">Confirmar</button>
     </div>
 
 

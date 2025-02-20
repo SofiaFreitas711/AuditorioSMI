@@ -1,6 +1,6 @@
 body {
     background-color: white;
-    background-image: url("https://scontent.fopo6-2.fna.fbcdn.net/v/t39.30808-6/419907652_7553298004681535_6968897049834617524_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=LSd7alPqQbgQ7kNvgGgEaVg&_nc_oc=AdhcWmWpqe1zOf3XZ5-Gpcp7evwzso7QXrIBHFN0Yts2qAUr-GLvbJ8CAc5_6dXJyDWFpBfqCGFLQCVLKuLWaERu&_nc_zt=23&_nc_ht=scontent.fopo6-2.fna&_nc_gid=ARkx49f5_Y8BwJYi3GsjQcH&oh=00_AYAqIzAMhS1IU3fTqP2pEYvQUpZGIRBji3CjwWKyGfDwOw&oe=67BC5491");
+    background-image: url('./419907652_7553298004681535_6968897049834617524_n.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -22,8 +22,18 @@ body {
 }
 
 #registo{
+    /* background-image: url('./auditorioT.png'); */
+    
+    /* background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left; */
+    /* background-size: 120%; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
+    /* background-position: 50%; */
     overflow-y: scroll;
     height: 30rem;
+    width: 100%;
 }
 
 #botoes{

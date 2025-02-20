@@ -4,113 +4,29 @@ let sum = 0
 let count = 0
 let registo = []
 let total = document.querySelector("#total")
-// let req = new XMLHttpRequest();
-// let i
+let pago = false
 
-// req.onreadystatechange = () => {
-//     if (req.readyState == XMLHttpRequest.DONE) {
-//       console.log(req.responseText);
-//     }
-//   };
-// let itens = [{name: "Café", value:0.70},{name: "Descafeinado", value: 0.80}, {name: "Pingo", value: 0.90},
-//     {name: "1/2 de Leite", value:1.20},{name: "Chá", value: 0.80}, {name: "Chá de Limão", value: 0.80},
-//     {name: "Água s/gás 0.5L", value:0.70}, {name: "Água s/gás 1.5L", value:1.50}, {name: "Água c/gás", value:1.00},
-//     {name:"Bebida de Lata", value:1.00}, {name: "Cerveja mini", value:1.00},{name:"Leite c/chocolate", value:1.00},
-//     {name:"Whisky 1/2", value:2.50}, {name:"Whisky 1", value:4.00},{name:"Porto",value:3.00},{name:"Chicletes", value:0.10},
-//     {name:"Chupas Chupas", value: 0.40},{name: "Tosta Mista", value:1.50}, {name: "Croissant", value: 1.50}, {name: "Pasteis Variados", value: 1.00},
-//     {name: "Torrada", value: 1.20}, {name:"Miniaturas", value:0.50},{name: "Pasteis de Carne", value: 1.50},{name: "Batatas Fritas", value: 1.00}]
+const supabaseUrl = 'https://lqrxowbeevibjdrukbhw.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxxcnhvd2JlZXZpYmpkcnVrYmh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwMDM5NTIsImV4cCI6MjA1NTU3OTk1Mn0.UAnho9Ty6f3We0hXdAv_mPtQ_NLjmPU0fgcSWwSuguI'
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
 
 async function getData(){
-    let botoes = document.querySelector("#botoes")
+    let { data, error } = await supabase
+        .from('AuditorioSMI')
+        .select('*')
 
-    let response = await fetch("https://api.jsonbin.io/v3/b/67abc5dead19ca34f8ffced8",{
-        headers:{ "X-Master-Key":"$2a$10$r35EQ33BznIOroKFpWsCRej8Kov97hjUcBuscwwuYkeGJNaOigiiC"}
-    })
-    let data = await response.json()
-    itens = data.record.itens
+    itens = data
     console.log(itens);
-    
-    // console.log(itens);
-    // return itens
-
     let itensLen = itens.length
-    for (let i = 0; i < itensLen; i++){
-        botoes.innerHTML += `<button class="itens" onclick="test(${i})"> ${itens[i].name} </button>`
+    for(let i = 0; i < itensLen; i++){
+        document.querySelector("#botoes").innerHTML += `<button class="itens" onclick="adicionarConta(${i})"> ${itens[i].name} </button>`
     }
-
-    // for(let i=0; i<itens.length; i++){
-    //     document.querySelector("#modalTable").innerHTML += `<tr><td>${itens[i].name}</td>
-    //                                                     <td>${itens[i].value}</td>
-    //                                                     <td><button onclick="remover(${i})">Remover</button><button onclick="editar(${i})">Editar</button></td></tr>`
-    // }
-    
 }
 
 getData()
 
-// function mudarBD(item){
-//     let novo = item
-//     console.log(novo);
-    
-//     // req.open("PUT", "https://api.jsonbin.io/v3/b/67abc5dead19ca34f8ffced8", true);
-//     // req.setRequestHeader("Content-Type", "application/json");
-//     // req.setRequestHeader("X-Master-Key", "$2a$10$r35EQ33BznIOroKFpWsCRej8Kov97hjUcBuscwwuYkeGJNaOigiiC");
-//     // req.send(`{"itens": ${novo}}`);
-//     // setTimeout(()=>{
-//     //     location.reload()
-//     // }, 1500)
-    
-    
-    
-// }
-
-// function remover(item){
-//     // alert(itens[item].name)
-//     for(let i = 0;i < itens.length; i++){
-//         if(itens[i].name == itens[item].name){
-//             alert("aqui " + itens[item].name)
-//             itens.splice(i,1)
-//             console.log(itens);
-//             mudarBD(JSON.stringify(itens))
-
-//         }
-//     }
-// }
-
-// let modalEditar = document.querySelector("#modalEditar")
-// function editar(item){
-//     modalEditar.style.display = "block"
-//     i = item
-//     // modalEditar.style.display = "block"
-//     // for(let i=0; i<itens.length;i++){
-//     //     if(itens[i].name == itens[item].name){
-//     //         let novoPreco = +prompt("Novo preço:")
-            
-//     //         itens.splice(i,0,{"name": itens[item].name, "value": +novoPreco.toFixed(2)})
-//     //         itens.splice(i+1,1)
-//     //         console.log(itens);
-            
-//     //         mudarBD(JSON.stringify(itens))
-//     //         break
-//     //     }
-//     // }
-// }
-
-// function add(){
-//     let name = document.querySelector("#name").value
-//     let price = document.querySelector("#price").value
-
-//     // console.log(name, price);
-//     let newItem = {"name": name, "value": +price}
-//     // console.log(newItem);
-//     itens.push(newItem)
-//     // console.log(itens);
-//     mudarBD(JSON.stringify(itens))
-    
-    
-// }
-
-function test(a) {
+function adicionarConta(a) {
     // console.log(a);
     let item = itens[a]
 
@@ -124,6 +40,7 @@ function test(a) {
     count++
 }
 
+//tirar item da conta
 function limparItem(id) {
     // console.log(id);
 
@@ -147,6 +64,7 @@ function limparItem(id) {
     // console.log(registo);
 }
 
+//limpar a conta
 function limpar(){
     sum = 0
     // console.log("Estou aqui"); 
@@ -158,49 +76,52 @@ function limpar(){
     
 }
 
+//soma da conta e troco
 function resultado(){
     let valor = document.querySelector("#valor").value
     let p = document.querySelector("#pTroco")
     let troco = valor - sum
         
     if(troco < 0){
-        // dia -= sum
         p.innerHTML = `Faltam ${-troco.toFixed(2)}€ para o valor a pagar`
-        // alert(`Faltam ${-troco.toFixed(2)}€ para o valor a pagar`)
     }else {
+        pago = true
         p.innerHTML = `Tem de dar ${troco.toFixed(2)}€`
-        // alert(`Tem de dar ${troco.toFixed(2)}€`)
         dia += sum
         sum = 0
         
     }
 }
 
-function fecho(){
-    // if(sum > 0){
-    //     dia += sum
-    // }
-    alert("O dia rendeu "+dia+"€")
-    dia = 0
-}
+//passar valor do fecho para BD
+async function fecho(){
+    let date = new Date().toISOString().split('T')[0]
+    let value = dia
+    console.log(date);
+    
 
-// let modal = document.querySelector("#modal")
-// function display(){
-//     modal.style.display = "block"   
-// }
+    let {data,error} = await supabase
+        .from("Fecho")
+        .insert({dia: `${date}`, value: `${value}`})
+        .select()
 
-function fecharModal(){
-    modal.style.display = "none"
+    setTimeout(()=>{
+        location.reload()
+    }, 500)
 }
 
 function fecharModalTroco(){
     let valor = document.querySelector("#valor").value
     let p = document.querySelector("#pTroco")
     modalTroco.style.display = "none"
-    registo = []
+    if(pago == true){
+
+        registo = []
         count = 0
         document.querySelector("#registo").innerHTML = ""
         total.innerHTML = `Total:\n 0.00€`
+        pago = false
+    }
     setTimeout(()=>{
         valor.value = 0
         p.innerHTML = ""
@@ -213,26 +134,10 @@ function troco(){
     
 }
 
-// function confirmar(){
-//     let item = i
-    
-//     for(let i=0; i<itens.length;i++){
-//         if(itens[i].name == itens[item].name){
-//             // let novoPreco = +prompt("Novo preço:")
-//             let novoPreco = document.querySelector("#novoPreco").value
-//             itens.splice(i,0,{"name": itens[item].name, "value": +novoPreco})
-//             itens.splice(i+1,1)
-//             console.log(itens);
-            
-//             mudarBD(JSON.stringify(itens))
-//             console.log(itens);
-            
-            
-//             break
-//         }
-//     }
-// }
-
-// function fecharModalEditar(){
-//     modalEditar.style.display = "none"
-// }
+//se a pass estiver certa muda para as definições
+function mudarPag(){
+    let pass = +prompt("Insira a password")
+    if(pass == "1866"){
+        window.location.href = 'definicoes.html'
+    }
+}
